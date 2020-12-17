@@ -1,0 +1,12 @@
+start_gen () {
+unset PIDGEN
+PIDGEN=$(ps aux|grep -v grep|grep "http-server.sh")
+if [[ ! $PIDGEN ]]; then
+screen -dmS generador /bin/http-server.sh -start
+echo -e "\e[33m GENERADOR ACTIVADO"
+else
+killall http-server.sh
+echo -e "\e[31m GENERADOR DESACTIVADO"
+fi
+}
+start_gen
